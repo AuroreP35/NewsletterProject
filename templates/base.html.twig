@@ -9,6 +9,17 @@
         {% endblock %}
     </head>
     <body>
+        <nav>
+            <ul>
+                {% if app.user %}
+                    <li>
+                        {{ app.user.email }} | 
+                        <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                {% endif %}
+                <!-- Ajoutez d'autres liens ici si nécessaire -->
+            </ul>
+        </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}
         {% endblock %}

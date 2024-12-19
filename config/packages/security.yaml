@@ -39,7 +39,7 @@ when@test:
                 memory_cost: 10 # Lowest possible value for argon
 
     encoders:
-        App\Entity\User:
+        App\Entity\Subscriber:
             algorithm: bcrypt
 
     # Définir les rôles et les accès
@@ -57,10 +57,16 @@ when@test:
 
     firewalls:
         main:
+            pattern: ^/
             anonymous: true
+            lazy: true
+            provider: app_user_provider
             form_login:
                 login_path: app_login
                 check_path: app_login
+                default_target_path: app_home
+                always_use_default_target_path: false
+                csrf_token_generator: security.csrf.token_manager
             logout:
                 path: app_logout
-                target: app_home
+                target: app_login
