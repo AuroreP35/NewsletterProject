@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'abonné{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <h1 class="text-2xl font-bold text-gray-900 mb-6">Modifier l'abonné</h1>
+
+                {{ include('subscriber/_form.html.twig', {
+                    'button_label': 'Mettre à jour',
+                    'button_class': 'bg-indigo-600 hover:bg-indigo-700'
+                }) }}
+
+                <div class="mt-6 flex space-x-3">
+                    <a href="{{ path('app_subscriber_index') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Retour à la liste
+                    </a>
+                    {{ include('subscriber/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

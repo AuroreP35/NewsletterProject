@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            {{ content|track_links(trackingToken)|raw }}
+        </div>
+        <hr>
+        <p style="font-size: 12px; color: #666;">
+            Pour vous désinscrire, <a href="{{ url('app_newsletter_unsubscribe', {'token': subscriber.unsubscribeToken}) }}">cliquez ici</a>
+        </p>
+        <p style="font-size: 12px; color: #666;">
+            Nous respectons votre vie privée. Pour plus d'informations sur la manière dont nous traitons vos données, veuillez consulter notre <a href="/politique-de-confidentialite">politique de confidentialité</a>.
+        </p>
+        <img src="{{ url('app_newsletter_track_open', {'token': trackingToken}) }}" alt="" width="1" height="1" />
+    </body>
+</html>

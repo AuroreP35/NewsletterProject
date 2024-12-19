@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Gestion Newsletter{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold text-gray-900">Gestion de Newsletter</h1>
+                <p class="mt-4 text-lg text-gray-500">Gérez vos newsletters et vos abonnés</p>
+            </div>
+
+            <div class="mt-4">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="mt-2 p-4 rounded-md {{ label == 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+
+            <div class="mt-10 flex justify-center space-x-6">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_newsletter_admin_index') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                        Administration
+                    </a>
+                {% else %}
+                    {% if app.user is null %}
+                        <a href="{{ path('app_login') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+                            Se connecter
+                        </a>
+                    {% endif %}
+                {% endif %}
+                
+                <a href="{{ path('app_newsletter_subscribe') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
+                    S'abonner
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

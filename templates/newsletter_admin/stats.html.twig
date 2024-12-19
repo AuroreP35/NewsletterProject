@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques de la newsletter{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">{{ newsletter.subject }}</h1>
+                <p class="mt-2 text-sm text-gray-500">Envoyée le {{ newsletter.sentAt|date('d/m/Y à H:i') }}</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+                {# Carte des statistiques générales #}
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Vue d'ensemble</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-500">Taux d'ouverture</p>
+                            <p class="mt-2 text-3xl font-semibold text-gray-900">{{ openRate }}%</p>
+                            <canvas id="openRateChart" data-open-rate="{{ openRate }}" class="mt-4"></canvas>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-500">Total des clics</p>
+                            <p class="mt-2 text-3xl font-semibold text-gray-900">{{ totalClicks }}</p>
+                            <p class="mt-1 text-sm text-gray-500">Taux de clic : {{ clickRate }}%</p>
+                        </div>
+                    </div>
+                </div>
+
+                {# Carte des clics par lien #}
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Clics par lien</h2>
+                    <canvas id="clicksChart" data-clicks="{{ clicksData|json_encode|e('html_attr') }}"></canvas>
+                </div>
+            </div>
+
+            {# Section des destinataires #}
+            <div class="mt-8 bg-white rounded-lg shadow">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-lg font-medium text-gray-900">Destinataires</h2>
+                </div>
+                <div class="divide-y divide-gray-200">
+                    {% for stat in stats %}
+                        <div class="px-6 py-4 flex justify-between items-center">
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">{{ stat.subscriber.email }}</p>
+                                <p class="text-sm text-gray-500">
+                                    {% if stat.openedAt %}
+                                        Ouvert le {{ stat.openedAt|date('d/m/Y à H:i') }}
+                                    {% else %}
+                                        Non ouvert
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                {{ stat.clickCount }} clic(s)
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('newsletter-stats') }}
+{% endblock %} 
