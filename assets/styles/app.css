@@ -1,3 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-    background-color: skyblue;
+    background-color: var(--blanc-casse);
+    font-family: "Arial", sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #1D4ED8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button, input, textarea {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+input[type="email"], textarea {
+    width: 80%;
+    height: 40px;
+    border: 1px solid var(--gris-clair);
+    padding: 10px;
+}
+
+input[type="email"]:focus {
+    border-color: var(--rose-pale);
+}
+
+button {
+    background-color: var(--bleu-clair);
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+}
+
+button:hover {
+    background-color: #A0D4E6;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.table tr:nth-child(even) {
+    background-color: var(--gris-clair);
+}
+
+.table tr:nth-child(odd) {
+    background-color: var(--blanc-casse);
+}
+
+.table button {
+    background-color: var(--jaune-doux);
+    border-radius: 10px;
+}
+
+.form-container {
+    background-color: var(--blanc-casse);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+}
+
+button[type="submit"] {
+    width: 200px;
+    height: 80px;
+    margin-top: 20px;
 }

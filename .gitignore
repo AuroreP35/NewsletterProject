@@ -23,3 +23,16 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> PHPStorm ###
+/.idea/
+###< PHPStorm ###
+
+###> Autres ###
+/public/uploads/    # si vous avez des uploads
+.DS_Store          # pour Mac
+Thumbs.db          # pour Windows
+*.log              # fichiers de log
+.env              # fichier .env principal (gardez uniquement .env.dist dans le repo)
+###< Autres ###
+node_modules
