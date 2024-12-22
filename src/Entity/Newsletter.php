@@ -26,7 +26,7 @@ class Newsletter
     #[ORM\Column]
     private bool $sent = false;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $sentAt = null;
 
     public function __construct()

@@ -11,12 +11,17 @@ body {
 }
 
 a {
-    color: #1D4ED8;
+    color: black !important;
     text-decoration: none;
+    outline: none;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+a:focus {
+    outline: none;
 }
 
 button, input, textarea {
@@ -36,16 +41,12 @@ input[type="email"]:focus {
 }
 
 button {
-    background-color: var(--bleu-clair);
-    color: #FFFFFF;
+    color: #000000;
     padding: 10px 20px;
-    border: none;
-}
-
-button:hover {
-    background-color: #A0D4E6;
+    background-color: var(--gris-clair);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 .table {
     width: 100%;
@@ -80,7 +81,6 @@ button:hover {
 }
 
 button[type="submit"] {
-    width: 200px;
-    height: 80px;
+    height: 40px;
     margin-top: 20px;
 }
