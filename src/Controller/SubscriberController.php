@@ -33,7 +33,7 @@ final class SubscriberController extends AbstractController
             $entityManager->persist($subscriber);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_subscriber_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_newsletter_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('subscriber/new.html.twig', [
@@ -59,7 +59,7 @@ final class SubscriberController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_subscriber_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_newsletter_admin_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('subscriber/edit.html.twig', [
@@ -76,6 +76,6 @@ final class SubscriberController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_subscriber_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_newsletter_admin_index', [], Response::HTTP_SEE_OTHER);
     }
 }

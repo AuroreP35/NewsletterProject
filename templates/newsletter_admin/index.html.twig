@@ -87,19 +87,56 @@
                         {% endfor %}
                     </div>
 
-
-
-
-                    </div>
-
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <p>Contenu de l'onglet Profil.</p>
-                </div>
-                <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                    <p>Contenu de l'onglet Paramètres.</p>
+                    <button type="button" id="back" class="mt-3 mr-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        <a href="{{ path('app_subscriber_new') }}"
+                           style="text-decoration: none;">
+                            Ajouter un abonné
+                        </a>
+                    </button>
+
+                    <div class="mt-3">
+                        <div class="row px-3">
+                            <!-- En-têtes -->
+                            <div class="col-md-3 fw-bold">Id</div>
+                            <div class="col-md-3 fw-bold">Email</div>
+                            <div class="col-md-3 fw-bold">Date d'inscription</div>
+                            <div class="col-md-3 fw-bold">Actions</div>
+                        </div>
+                        <hr>
+                        {% for subscriber in subscribers %}
+                            <div class="row align-items-center px-3">
+                                <!-- Colonne Id -->
+                                <div class="col-md-3">
+                                    {{ subscriber.id }}
+                                </div>
+                                <!-- Colonne Email -->
+                                <div class="col-md-3">
+                                    {{ subscriber.email }}
+                                </div>
+                                <!-- Colonne Date de création -->
+                                <div class="col-md-3">
+                                    {{ subscriber.createAt ? subscriber.createAt|date('d/m/Y H:i') : '' }}
+                                </div>
+                                <!-- Colonne Action -->
+                                <div class="col-md-3">
+                                    <a href="{{ path('app_subscriber_show', {'id': subscriber.id}) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Voir</a>
+                                    <a href="{{ path('app_subscriber_edit', {'id': subscriber.id}) }}" class="text-indigo-600 hover:text-indigo-900">Modifier</a>
+                                </div>
+                            </div>
+                            <hr>
+                        {% else %}
+                            <div class="row">
+                                <div class="col text-center">
+                                    Aucun abonné disponible.
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 {% endblock %}

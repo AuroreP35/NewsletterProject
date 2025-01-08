@@ -26,10 +26,12 @@ final class NewsletterAdminController extends AbstractController
     ) {}
 
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(NewsletterRepository $newsletterRepository): Response
+    public function index(NewsletterRepository $newsletterRepository,
+                          SubscriberRepository $subscriberRepository): Response
     {
         return $this->render('newsletter_admin/index.html.twig', [
             'newsletters' => $newsletterRepository->findAll(),
+            'subscribers' => $subscriberRepository->findAll(),
         ]);
     }
 
