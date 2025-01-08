@@ -69,9 +69,9 @@ final class NewsletterAdminController extends AbstractController
                 $this->addFlash('info', 'Nombre d\'abonnés trouvés : ' . count($subscribers));
 
                 // Debug de chaque abonné
-                foreach ($subscribers as $subscriber) {
-                    $this->addFlash('info', 'Abonné : ' . $subscriber->getEmail());
-                }
+          //      foreach ($subscribers as $subscriber) {
+          //          $this->addFlash('info', 'Abonné : ' . $subscriber->getEmail());
+          //      }
 
                 foreach ($subscribers as $subscriber) {
                     try {
@@ -96,8 +96,8 @@ final class NewsletterAdminController extends AbstractController
                         // Tentative d'envoi
                         $mailer->send($email);
                         
-                        // Message de confirmation
-                        $this->addFlash('success', 'Email envoyé à : ' . $subscriber->getEmail());
+                        // Message de confirmation: debug
+                        //$this->addFlash('success', 'Email envoyé à : ' . $subscriber->getEmail());
                         
                     } catch (\Exception $e) {
                         // Message d'erreur
